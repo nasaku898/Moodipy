@@ -57,9 +57,6 @@ router.get('/callback', (req, res) => {
             const refresh_token = data.body['refresh_token'];
             const expires_in = data.body['expires_in'];
 
-            console.log(access_token)
-            console.log(refresh_token)
-            console.log(expires_in)
             spotifyApi.setAccessToken(access_token);
             spotifyApi.setRefreshToken(refresh_token);
 
