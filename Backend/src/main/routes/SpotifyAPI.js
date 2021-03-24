@@ -1,6 +1,6 @@
 const SpotifyWebApi = require('spotify-web-api-node')
 const express = require('express');
-const { clientId, clientSecret, redirectURI } = require('../env/SpotifyCredential');
+require('dotenv').config();
 
 const scopes = [
     'ugc-image-upload',
@@ -26,9 +26,9 @@ const scopes = [
 
 // Instantiating the Spotify API module
 const spotifyApi = new SpotifyWebApi({
-    clientId: clientId,
-    clientSecret: clientSecret,
-    redirectUri: redirectURI
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    redirectUri: process.env.REDIRECT_URI
 })
 
 const router = express();
