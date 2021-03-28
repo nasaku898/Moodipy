@@ -83,13 +83,52 @@ router.get('/callback', (req, res) => {
         });
 });
 
-// Test routes to fetch 5 playlist that has keyword happy
-router.get('/test', (req, res) => {
-    spotifyApi.search('Happy', ['playlist'], { limit: 5, offset: 1 }).then(response => {
-        console.log(response)
-        console.log(response.body.playlists.items)
-        res.send(response)
-    })
+// Route to fetch the playlist by emotion
+router.get('/playlist/emotion', (req, res) => {
+    // Defining search words for different emotions
+    const searchKeysByEmotion =
+    {
+        "anger": "anger emotion",
+        "contempt": "feeling contempt",
+        "disgust": "feeling disgusting",
+        "fear": "frightening",
+        "happiness": "happiness",
+        "neutral": "feeling neutral",
+        "sadness": "sadness",
+        "surprise": "astonishing"
+    }
+
+    // Storing emotions and percentages in seperate arrays
+    const emotions = Object.keys(req.body)
+    const percentages = Object.values(req.body)
+
+    // Finding the max value for the percentage
+    const maxPercentage = Math.max(...percentages)
+
+    if (maxPercentage >= 0.6) {
+        // Getting the index in the array of the max percentage
+        const indexOfMaxInPercentageArr = percentages.indexOf(maxPercentage)
+
+        // Finding the emotion from the enotion array 
+        const emotionOfMax = emotions[indexOfMaxInPercentageArr]
+
+        // Finding the search words for the emotion
+        let searchKey = searchKeysByEmotion[emotionOfMax];
+
+        //Searching for a playlist
+        spotifyApi.search(searchKey, ['playlist'], { limit: 10, offset: 0 }).then(response => {
+            if (response.body.playlists.items.length === 0) {
+                res.status(404).send("No playlist were found for " + emotionOfMax + ".")
+            } else {
+                res.status(200).send(response)
+            }
+        }).catch((error) => {
+            res.status(400).send(error.message)
+        })
+    } else {
+        res.status(400).send('Uncertain about the emotion. Please upload another picture.');
+    }
+
 })
 
 module.exports = router
