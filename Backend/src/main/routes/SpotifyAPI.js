@@ -113,7 +113,7 @@ router.get('/playlist/emotion', (req, res) => {
         const emotionOfMax = emotions[indexOfMaxInPercentageArr]
 
         // Finding the search words for the emotion
-        let searchKey = searchKeysByEmotion[emotionOfMax];
+        const searchKey = searchKeysByEmotion[emotionOfMax];
 
         //Searching for a playlist
         spotifyApi.search(searchKey, ['playlist'], { limit: 10, offset: 0 }).then(response => {
@@ -123,7 +123,7 @@ router.get('/playlist/emotion', (req, res) => {
                 res.status(200).send(response)
             }
         }).catch((error) => {
-            res.status(400).send(error.message)
+            res.status(400).send(error.body)
         })
     } else {
         res.status(400).send('Uncertain about the emotion. Please upload another picture.');
