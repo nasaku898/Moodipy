@@ -7,9 +7,9 @@ const initialize_db = () => {
     const createResultsTable = `
     CREATE TABLE IF NOT EXISTS result(
         submissionID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-        initial_emotion VARCHAR(255) NOT NULL,
-        api_emotion VARCHAR(255) NOT NULL,
-        user_feedback VARCHAR(255) NOT NULL
+        initial_emotion TINYTEXT NOT NULL,
+        api_emotion TINYTEXT NOT NULL,
+        user_feedback TINYTEXT NOT NULL
     );`;
 
     db.query(createResultsTable, (err, result) => {

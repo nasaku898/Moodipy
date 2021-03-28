@@ -10,7 +10,11 @@ insertResult = (initial_emotion, api_emotion, user_feedback) => {
 
         //insert statement
         if (isEmpty(initial_emotion) || isEmpty(api_emotion) || isEmpty(user_feedback)) {
-            reject("Missing input parameter.");
+            console.log("yeet");
+            reject("Missing input parameter(s).");
+        }
+        if (!isNaN(initial_emotion) || !isNaN(api_emotion)) {
+            reject("Invalid input parameter(s).");
         }
         else {
             const insert =
