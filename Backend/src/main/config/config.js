@@ -1,3 +1,4 @@
+//cloud database information
 const DB_DATABASE = "moodipy";
 const DB_HOST = "moodipy.mysql.database.azure.com";
 const DB_PASSWORD = "Moodipy123!";

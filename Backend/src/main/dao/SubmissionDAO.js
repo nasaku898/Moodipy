@@ -2,6 +2,8 @@ const db = require('../helpers/db');
 
 insertResult = (initial_emotion, api_emotion, user_feedback) => {
     return new Promise((resolve, reject) => {
+
+        //insert statement
         const insert =
             "INSERT INTO `result` (`initial_emotion`, `api_emotion`, `user_feedback`) VALUES ('" +
             initial_emotion +
@@ -10,7 +12,8 @@ insertResult = (initial_emotion, api_emotion, user_feedback) => {
             "', '" +
             user_feedback +
             "');";
-        console.log(insert);
+
+        //insert result into table
         db.query(insert, (err) => {
             if (err) {
                 reject(err);
