@@ -11,7 +11,7 @@ router.post("/result", (req, res) => {
     ).then((response) => {
         res.status(200).send(response);
     }).catch((error) => {
-        res.status(error).send(error);
+        res.status(400).send(error);
     });
 });
 
