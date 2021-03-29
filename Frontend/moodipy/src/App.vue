@@ -1,13 +1,14 @@
 <template>
-  <OnboardingPage></OnboardingPage>
+  <MusicPage></MusicPage>
 </template>
 
 <script>
-import OnboardingPage from "./components/OnboardingPage/OnboardingPage.vue";
+import MusicPage from "./components/MusicPage/MusicPage";
+
 export default {
   name: "App",
   components: {
-    OnboardingPage,
+    MusicPage,
   },
 };
 </script>
