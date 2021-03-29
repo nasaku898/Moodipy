@@ -2,7 +2,7 @@ const db = require('../helpers/db');
 
 insertResult = (initial_emotion, api_emotion, user_feedback) => {
 
-    function isEmpty(str) {
+    isEmpty = (str) => {
         return (!str || str.length === 0);
     }
 
