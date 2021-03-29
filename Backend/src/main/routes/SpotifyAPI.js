@@ -85,7 +85,6 @@ router.get('/callback', (req, res) => {
 
 // Route to fetch the playlist by emotion
 router.post('/playlist/emotion', (req, res) => {
-    console.log(req.body)
     // Defining search words for different emotions
     const searchKeysByEmotion =
     {
