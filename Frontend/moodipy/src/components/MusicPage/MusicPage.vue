@@ -28,36 +28,48 @@
             </div>
           </div>
         </label>
+        <button class="btn" v-if="fileName" type="submit">Search</button>
         <button class="btn" v-if="fileName" @click="removeFile">
           Delete file
         </button>
-
-        <button class="btn" v-if="fileName" type="submit">Search</button>
       </form>
     </div>
     <div id="playlist-result">
       <p id="playlist">Playlists</p>
+      <playlist-carousel
+        id="playlist-carousel"
+        v-if="Object.keys(playlists).length > 0"
+        :playlists="playlists"
+      ></playlist-carousel>
+      <p v-if="errorMsg" id="error-msg">{{ errorMsg }}</p>
     </div>
   </div>
 </template>
 
 <script>
 const axios = require("axios").default;
+import PlaylistCarousel from "../PlaylistCarousel/PlaylistCarousel.vue";
+
 export default {
   name: "MusicPage",
   data() {
     return {
       fileName: "",
+      playlists: [],
+      errorMsg: "",
     };
   },
+  components: {
+    PlaylistCarousel,
+  },
+
   methods: {
     retrievePlaylists(event) {
       event.preventDefault();
       const file = event.target.imgSelect.files[0];
-      console.log(file);
       const reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = () => {
+      reader.onload = async () => {
         var dataURL = reader.result;
 
         var BASE64_MARKER = ";base64,";
@@ -75,8 +87,8 @@ export default {
 
         var imgContent = new Blob([uInt8Array], { type: contentType });
 
-        axios
-          .post(
+        try {
+          const emotions = await axios.post(
             "https://soen357.cognitiveservices.azure.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=emotion&recognitionModel=recognition_04&returnRecognitionModel=false&detectionModel=detection_01&faceIdTimeToLive=86400",
             imgContent,
             {
@@ -91,13 +103,20 @@ export default {
                   "age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise",
               },
             }
-          )
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+          );
+          const spotifyResponse = await axios.post(
+            "http://localhost:8888/spotify/playlist/emotion",
+            emotions.data[0].faceAttributes.emotion
+          );
+          this.errorMsg = ""
+          this.playlists = spotifyResponse.data.body.playlists.items;
+        } catch (error) {
+          if (error.message) {
+            this.errorMsg = error.message;
+          } else {
+            this.errorMsg = "Unexpected Error";
+          }
+        }
       };
     },
     getFileName() {
@@ -261,7 +280,7 @@ export default {
   margin: 5px;
 
   max-width: 889px;
-  height: 533px;
+  height: 633px;
 
   /* Colors / White */
 
@@ -282,8 +301,29 @@ export default {
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 23px;
   line-height: 28px;
   color: #000000;
+  margin-left: 60px;
+}
+
+#playlist-carousel {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+#error-msg {
+  color: red;
+  font-family: Roboto;
+  font-style: bold;
+  font-size: 40px;
+  line-height: 28px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  text-align: center;
 }
 </style>
