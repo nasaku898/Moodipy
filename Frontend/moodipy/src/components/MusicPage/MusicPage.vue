@@ -108,7 +108,7 @@ export default {
             "http://localhost:8888/spotify/playlist/emotion",
             emotions.data[0].faceAttributes.emotion
           );
-          this.errorMsg = ""
+          this.errorMsg = "";
           this.playlists = spotifyResponse.data.body.playlists.items;
         } catch (error) {
           if (error.message) {
@@ -171,21 +171,17 @@ export default {
   font-weight: 900;
   font-size: 56px;
   line-height: 64px;
-
   color: #000000;
-
   margin: 32px 0px;
 }
 
 @media only screen and (min-width: 300px) {
   #frame117 {
-    /* Frame 117 */
-
     padding: 0px;
+    margin: 20px;
 
     max-width: 531px;
     height: 100%;
-    margin: 20px;
   }
 
   @media only screen and (min-width: 1200px) {
@@ -206,7 +202,7 @@ export default {
 
   max-width: 531px;
   max-height: 75px;
-
+  margin: 0px 0px;
   /* 16 Paragraph 2 */
 
   font-family: Roboto;
@@ -217,8 +213,6 @@ export default {
   /* or 150% */
 
   color: #000000;
-
-  margin: 0px 0px;
 }
 
 #select-file {
@@ -259,23 +253,20 @@ export default {
   max-height: 94px;
 
   /* Colors / White */
-
   background: #ffffff;
-  /* Shadow */
 
+  /* Shadow */
   box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
     0px 4px 16px rgba(51, 51, 51, 0.08);
   border-radius: 4px;
 
   /* Inside Auto Layout */
-
   margin: 0px 0px;
   margin-top: 10px;
 }
 
 #playlist-result {
   /* Auto Layout */
-
   padding: 5px;
   margin: 5px;
 
@@ -283,10 +274,9 @@ export default {
   height: 633px;
 
   /* Colors / White */
-
   background: #ffffff;
-  /* Shadow */
 
+  /* Shadow */
   box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
     0px 4px 16px rgba(51, 51, 51, 0.08);
   border-radius: 8px;
