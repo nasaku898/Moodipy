@@ -24,7 +24,7 @@ export default {
     color: #2c3e50;*/
     width: 100%;
     height: 100vh;
-    background-image: url(./assets/Frame@2x.png);
+    background-image: url(./assets/Frame-without-square.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }
