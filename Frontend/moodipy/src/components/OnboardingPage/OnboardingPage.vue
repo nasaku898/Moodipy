@@ -9,14 +9,38 @@
       v-model="message"
       placeholder="Type your current mood"
     />
+    <div v-if="validEntry == false">
+      *Please enter a word or a group of word
+    </div>
     <br />&nbsp;<br />
-    <button id="getStarted">Get Started</button>
+    <button id="getStarted" @click="saveInputEmotion(message)">
+      Get Started
+    </button>
   </div>
 </template>
 
 <script>
 export default {
   name: "StartPage",
+  data() {
+    return {
+      emotion: "",
+      validEntry: true,
+    };
+  },
+  methods: {
+    saveInputEmotion(message) {
+      if (this.hasNumber(message) || this.message === undefined) {
+        this.validEntry = false;
+      } else {
+        this.emotion = message;
+        this.validEntry = true;
+      }
+    },
+    hasNumber(string) {
+      return /\d/.test(string);
+    },
+  },
 };
 </script>
 
