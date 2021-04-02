@@ -6,34 +6,36 @@
     </p>
     <input
       id="input-box"
-      v-model="message"
+      v-model="inputEmotion"
       placeholder="Type your current mood"
     />
     <div v-if="validEntry == false">
       *Please enter a word or a group of word
     </div>
     <br />&nbsp;<br />
-    <button id="getStarted" @click="saveInputEmotion(message)">
+    <button id="getStarted" v-on:click="changeEmotion(inputEmotion)">
       Get Started
     </button>
+    <!-- print initial emotion of app.vue for for debug puposes -->
+    <p>{{ initialEmotion }}</p>
   </div>
 </template>
 
 <script>
 export default {
   name: "StartPage",
+  props: ["initialEmotion"],
   data() {
     return {
-      emotion: "",
       validEntry: true,
     };
   },
   methods: {
-    saveInputEmotion(message) {
-      if (this.hasNumber(message) || this.message === undefined) {
+    changeEmotion(inputEmotion) {
+      if (this.hasNumber(inputEmotion) || this.inputEmotion === undefined || this.inputEmotion === '') {
         this.validEntry = false;
       } else {
-        this.emotion = message;
+        this.$emit("changeEmotion", inputEmotion);
         this.validEntry = true;
       }
     },

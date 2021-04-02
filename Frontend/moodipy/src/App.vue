@@ -1,14 +1,30 @@
 <template>
-  <MusicPage></MusicPage>
+  <OnboardingPage
+    v-on:changeEmotion="updateInitialEmotion($event)"
+    :initialEmotion="initialEmotion"
+  ></OnboardingPage>
+  <!-- <MusicPage></MusicPage> -->
 </template>
 
 <script>
-import MusicPage from "./components/MusicPage/MusicPage";
+//import MusicPage from "./components/MusicPage/MusicPage";
+import OnboardingPage from "./components/OnboardingPage/OnboardingPage";
 
 export default {
   name: "App",
   components: {
-    MusicPage,
+    OnboardingPage,
+    // MusicPage
+  },
+  data() {
+    return {
+      initialEmotion: "Initial emotion from App",
+    };
+  },
+  methods: {
+    updateInitialEmotion(enteredEmotion) {
+      this.initialEmotion = enteredEmotion;
+    },
   },
 };
 </script>
