@@ -10,7 +10,10 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "k-progress": "^1.5.0",
+    "k-progress-v3": "^1.0.0",
     "vue": "^3.0.0",
+    "vue-simple-progress": "^1.1.1",
     "vue3-carousel": "^0.1.13"
   },
   "devDependencies": {

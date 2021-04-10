@@ -1,14 +1,17 @@
 <template>
   <MusicPage></MusicPage>
+  <!-- <FeedbackPage></FeedbackPage> -->
 </template>
 
 <script>
 import MusicPage from "./components/MusicPage/MusicPage";
+// import FeedbackPage from "./components/FeedbackPage/FeedbackPage.vue"
 
 export default {
   name: "App",
   components: {
     MusicPage,
+    // FeedbackPage
   },
 };
 </script>
