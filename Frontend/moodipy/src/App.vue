@@ -1,17 +1,32 @@
 <template>
-  <MusicPage></MusicPage>
-  <!-- <FeedbackPage></FeedbackPage> -->
+  <OnboardingPage
+    v-on:changeEmotion="updateInitialEmotion($event)"
+    :initialEmotion="initialEmotion"
+  ></OnboardingPage>
+  <!-- <MusicPage></MusicPage> -->
 </template>
 
 <script>
-import MusicPage from "./components/MusicPage/MusicPage";
-// import FeedbackPage from "./components/FeedbackPage/FeedbackPage.vue"
+//import FeedbackPage from "./components/FeedbackPage/FeedbackPage.vue"
+//import MusicPage from "./components/MusicPage/MusicPage";
+import OnboardingPage from "./components/OnboardingPage/OnboardingPage";
 
 export default {
   name: "App",
   components: {
-    MusicPage,
     // FeedbackPage
+    OnboardingPage,
+    // MusicPage
+  },
+  data() {
+    return {
+      initialEmotion: "Initial emotion from App",
+    };
+  },
+  methods: {
+    updateInitialEmotion(enteredEmotion) {
+      this.initialEmotion = enteredEmotion;
+    },
   },
 };
 </script>
@@ -27,7 +42,7 @@ export default {
     color: #2c3e50;*/
     width: 100%;
     height: 100vh;
-    background-image: url(./assets/Frame@2x.png);
+    background-image: url(./assets/Frame-without-square.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }
