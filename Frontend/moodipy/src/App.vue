@@ -1,22 +1,31 @@
 <template>
-  <OnboardingPage
+<div>
+  <NavBar></NavBar>
+  <!-- <OnboardingPage
     v-on:changeEmotion="updateInitialEmotion($event)"
     :initialEmotion="initialEmotion"
-  ></OnboardingPage>
-  <!-- <MusicPage></MusicPage> -->
+  ></OnboardingPage> -->
+  <MusicPage></MusicPage>
+  <!-- <AboutPage></AboutPage> -->
+</div>
 </template>
 
 <script>
-//import FeedbackPage from "./components/FeedbackPage/FeedbackPage.vue"
-//import MusicPage from "./components/MusicPage/MusicPage";
-import OnboardingPage from "./components/OnboardingPage/OnboardingPage";
+
+import MusicPage from "./components/MusicPage/MusicPage";
+// import OnboardingPage from "./components/OnboardingPage/OnboardingPage";
+import NavBar from "./components/NavBar/NavBar";
+// import AboutPage from "./components/AboutPage/AboutPage";
+
 
 export default {
   name: "App",
   components: {
-    // FeedbackPage
-    OnboardingPage,
-    // MusicPage
+    // OnboardingPage,
+    // AboutPage,
+    NavBar,
+    MusicPage
+
   },
   data() {
     return {

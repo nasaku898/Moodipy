@@ -143,12 +143,19 @@ export default {
   .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding-top: 15%;
+    padding-top: 20%;
   }
+}
+
+.container {
+  padding-top: 15%;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 @media only screen and (max-width: 600px) {
   .container {
+    padding-top: 10%;
     display: grid;
     grid-template-columns: 1fr;
   }

@@ -9,7 +9,7 @@
       v-model="inputEmotion"
       placeholder="Type your current mood"
     />
-    <div v-if="validEntry == false">
+    <div id="errorMsg" v-if="validEntry == false">
       *Please enter a word or a group of word
     </div>
     <br />&nbsp;<br />
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+
 export default {
   name: "StartPage",
   props: ["initialEmotion"],
@@ -112,5 +113,10 @@ export default {
   width: 120px;
   height: 44px;
   color: white;
+}
+
+#errorMsg {
+  width: 90%;
+  text-align: center;
 }
 </style>
