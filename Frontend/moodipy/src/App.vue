@@ -7,12 +7,14 @@
 </template>
 
 <script>
+//import FeedbackPage from "./components/FeedbackPage/FeedbackPage.vue"
 //import MusicPage from "./components/MusicPage/MusicPage";
 import OnboardingPage from "./components/OnboardingPage/OnboardingPage";
 
 export default {
   name: "App",
   components: {
+    // FeedbackPage
     OnboardingPage,
     // MusicPage
   },
