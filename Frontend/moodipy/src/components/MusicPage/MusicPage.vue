@@ -33,6 +33,9 @@
           Delete file
         </button>
       </form>
+        <div id="feedbackClick" v-if="Object.keys(playlists).length > 0">
+            <Button text="View details and give feedback" background="#6E41E2" color="white" />
+        </div>
     </div>
     <div id="playlist-result">
       <p id="playlist">Playlists</p>
@@ -49,6 +52,7 @@
 <script>
 const axios = require("axios").default;
 import PlaylistCarousel from "../PlaylistCarousel/PlaylistCarousel.vue";
+import Button from "../Button/Button.vue";
 
 export default {
   name: "MusicPage",
@@ -61,6 +65,7 @@ export default {
   },
   components: {
     PlaylistCarousel,
+    Button,
   },
 
   methods: {
@@ -155,6 +160,14 @@ export default {
     grid-template-columns: 1fr;
   }
 }
+
+  .feedback {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    grid-row-start: 2;
+    grid-row-end: span 3;
+}
+
 .btn {
   font-family: Roboto;
   font-style: normal;
@@ -166,9 +179,11 @@ export default {
   border: none;
   background: transparent;
 }
+
 .btn:hover {
   background: rgba(51, 51, 51, 0.08);
 }
+
 #slogan {
   /* Music adapted to your mood */
 
@@ -244,6 +259,7 @@ export default {
 
   color: rgba(17, 17, 17, 0.48);
 }
+
 #delete-file {
   font-family: Roboto;
   font-style: normal;
@@ -253,6 +269,7 @@ export default {
   color: #6e41e2;
   margin: 0px;
 }
+
 #file {
   /* File */
 
@@ -322,5 +339,9 @@ export default {
   margin-right: auto;
   width: 90%;
   text-align: center;
+}
+
+#feedbackClick {
+  padding-top: 10px;
 }
 </style>
