@@ -1,6 +1,6 @@
 <template>
   <div id="menubar">
-    <img id="logo" src="../../assets/moodipyLogo.png" alt="Girl in a jacket" />
+    <img id="logo" src="../../assets/moodipyLogo.png" alt="Moodipy Logo" />
     <p id="name">MOODIPY</p>
     <button id="about">About</button>
   </div>
