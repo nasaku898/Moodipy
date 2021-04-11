@@ -144,6 +144,7 @@ export default {
 
 @media only screen and (max-width: 600px) {
   .container {
+    padding-top: 10%;
     display: grid;
     grid-template-columns: 1fr;
   }

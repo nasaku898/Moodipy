@@ -1,19 +1,24 @@
 <template>
+<div>
+  <NavBar></NavBar>
   <OnboardingPage
     v-on:changeEmotion="updateInitialEmotion($event)"
     :initialEmotion="initialEmotion"
   ></OnboardingPage>
   <!-- <MusicPage></MusicPage> -->
+</div>
 </template>
 
 <script>
-//import MusicPage from "./components/MusicPage/MusicPage";
+// import MusicPage from "./components/MusicPage/MusicPage";
 import OnboardingPage from "./components/OnboardingPage/OnboardingPage";
+import NavBar from "./components/NavBar/NavBar";
 
 export default {
   name: "App",
   components: {
     OnboardingPage,
+    NavBar,
     // MusicPage
   },
   data() {
