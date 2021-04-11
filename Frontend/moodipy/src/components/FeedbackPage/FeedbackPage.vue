@@ -9,7 +9,6 @@
                     <div class="lang">{{skill.lang}}<span class="percent">({{skill.percent}}%)</span></div>
                     <div class="bar">
                         <div class="progress" v-bind:style="{'background':skill.color, 'width':skill.percent+'%'}"></div>
-
                     </div>
                 </li>
             </ul>
