@@ -16,7 +16,7 @@ export default {
 #menubar {
   background-color: transparent;
   height: 40px;
-  position: sticky;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;

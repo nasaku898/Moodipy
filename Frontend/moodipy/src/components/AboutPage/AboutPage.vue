@@ -41,9 +41,10 @@ export default {
 @media only screen and (max-width: 769px) {
   #title {
     margin: auto;
+    margin-top: 40px;
   }
   #description {
-    width: 18em;
+    width: 90%;
     text-align: justify;
     text-justify: inter-word;
     margin: auto;
@@ -58,7 +59,7 @@ export default {
     font-size: 50px;
   }
   #description {
-    width: 50em;
+    width: 90%;
     text-align: justify;
     text-justify: inter-word;
     margin: auto;
