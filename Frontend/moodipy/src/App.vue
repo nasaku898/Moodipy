@@ -11,10 +11,12 @@
 </template>
 
 <script>
+
 import MusicPage from "./components/MusicPage/MusicPage";
 // import OnboardingPage from "./components/OnboardingPage/OnboardingPage";
 import NavBar from "./components/NavBar/NavBar";
 // import AboutPage from "./components/AboutPage/AboutPage";
+
 
 export default {
   name: "App",
@@ -23,6 +25,7 @@ export default {
     // AboutPage,
     NavBar,
     MusicPage
+
   },
   data() {
     return {
