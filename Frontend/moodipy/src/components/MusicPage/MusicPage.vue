@@ -59,6 +59,7 @@
 const axios = require("axios").default;
 import PlaylistCarousel from "../PlaylistCarousel/PlaylistCarousel.vue";
 import Button from "../Button/Button.vue";
+import router from "../../router";
 
 export default {
   name: "MusicPage",
@@ -152,6 +153,11 @@ export default {
       document.getElementById("imgSelect").value = "";
       this.getFileName();
     },
+  },
+  beforeMount() {
+    if (!this.$store.state.initialEmotion) {
+      router.push("/");
+    }
   },
 };
 </script>
