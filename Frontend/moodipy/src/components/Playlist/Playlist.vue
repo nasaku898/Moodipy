@@ -51,7 +51,7 @@ img {
 }
 #playlist-canvas {
   background: rgba(0, 0, 0, 0.05);
-  width: 90%;
+  width: 200px;
   height:220px;
 }
 </style>
