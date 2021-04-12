@@ -60,7 +60,8 @@ const axios = require("axios").default;
 import PlaylistCarousel from "../PlaylistCarousel/PlaylistCarousel.vue";
 import Button from "../Button/Button.vue";
 import router from "../../router";
-
+import { BACKEND_URL } from "../../config";
+const URL = BACKEND_URL;
 export default {
   name: "MusicPage",
   data() {
@@ -123,7 +124,7 @@ export default {
           );
 
           const spotifyResponse = await axios.post(
-            "http://localhost:8888/spotify/playlist/emotion",
+            `${URL}/spotify/playlist/emotion`,
             emotions.data[0].faceAttributes.emotion
           );
 

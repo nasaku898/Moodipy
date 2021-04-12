@@ -227,7 +227,7 @@ export default {
         this.$store.state.username &&
         this.$store.state.initialEmotion &&
         this.$store.state.emotionQueried && 
-        this.$store.state.finalEmotion &&
+        (this.$store.state.agreeWithInitialEmotion || this.$store.state.finalEmotion) &&
         this.$store.state.username
       ) {
         const feedback = {
@@ -240,6 +240,7 @@ export default {
           finalEmotion:this.$store.state.finalEmotion
         };
         await createFeedback(feedback);
+        router.push('/')
       } else {
         alert("Please fill out the form completely");
       }

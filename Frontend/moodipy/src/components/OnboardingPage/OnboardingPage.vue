@@ -36,6 +36,8 @@
 <script>
 import axios from "axios";
 import router from "../../router";
+import { BACKEND_URL } from "../../config";
+const URL = BACKEND_URL;
 
 export default {
   name: "OnboardingPage",
@@ -65,11 +67,11 @@ export default {
       return /\d/.test(string);
     },
     redirectToSpotifyLogin() {
-      window.location = "http://localhost:8888/spotify/login";
+      window.location = `${URL}/spotify/login`;
     },
   },
   beforeMount() {
-    axios.get("http://localhost:8888/spotify/status").catch((err) => {
+    axios.get(`${URL}/spotify/status`).catch((err) => {
       if (err.response.status === 404) {
         this.spotifyLoggedIn = false;
       }
