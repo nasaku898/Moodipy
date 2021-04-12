@@ -203,48 +203,6 @@ export default {
 
   data() {
     return {
-      skills: [
-        {
-          lang: "Anger",
-          percent: 0.9 * 100,
-          color: "#6E41E2",
-        },
-        {
-          lang: "Contempt",
-          percent: 76,
-          color: "#6E41E2",
-        },
-        {
-          lang: "Disgust",
-          percent: 84,
-          color: "#6E41E2",
-        },
-        {
-          lang: "Fear",
-          percent: 94,
-          color: "#6E41E2",
-        },
-        {
-          lang: "Happiness",
-          percent: 93,
-          color: "#6E41E2",
-        },
-        {
-          lang: "Neutral",
-          percent: 43,
-          color: "#6E41E2",
-        },
-        {
-          lang: "Sadness",
-          percent: 55,
-          color: "#6E41E2",
-        },
-        {
-          lang: "Surprise",
-          percent: 39,
-          color: "#6E41E2",
-        },
-      ],
       showConsentForm: false,
       consentGiven: false,
     };
