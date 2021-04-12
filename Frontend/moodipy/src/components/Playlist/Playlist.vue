@@ -37,8 +37,6 @@ img {
 #playlist-wrapper {
   display: grid;
   grid-template-columns: 1fr;
-  width:180px;
-  height: 200px;
 }
 
 #playlist-name {
@@ -53,6 +51,7 @@ img {
 }
 #playlist-canvas {
   background: rgba(0, 0, 0, 0.05);
-  width: 115%;
+  width: 90%;
+  height:220px;
 }
 </style>
