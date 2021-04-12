@@ -66,7 +66,8 @@ router.get('/callback', (req, res) => {
             console.log(
                 `Sucessfully retreived access token. Expires in ${expires_in} s.`
             );
-            res.send('Success! You can now close the window.');
+
+            res.redirect('http://localhost:8080/')
 
             setInterval(async () => {
                 const data = await spotifyApi.refreshAccessToken();
@@ -114,12 +115,13 @@ router.post('/playlist/emotion', (req, res) => {
 
         // Finding the search words for the emotion
         const searchKey = searchKeysByEmotion[emotionOfMax];
-
+        console.log(emotionOfMax)
         //Searching for a playlist
         spotifyApi.search(searchKey, ['playlist'], { limit: 10, offset: 0 }).then(response => {
             if (response.body.playlists.items.length === 0) {
                 res.status(404).send("No playlist were found for " + emotionOfMax + ".")
             } else {
+                response.emotionDetected = emotionOfMax
                 res.status(200).send(response)
             }
         }).catch((error) => {
@@ -129,6 +131,15 @@ router.post('/playlist/emotion', (req, res) => {
         res.status(400).send('Uncertain about the emotion. Please upload another picture.');
     }
 
+})
+
+router.get('/status', (req, res) => {
+    const token = spotifyApi.getAccessToken()
+    if (!token) {
+        res.status(404).send()
+    } else {
+        res.status(302).send("ggi")
+    }
 })
 
 module.exports = router;
