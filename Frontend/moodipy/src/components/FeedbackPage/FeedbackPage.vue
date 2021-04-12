@@ -151,17 +151,17 @@
             text="Yes, I agree"
             background="#6E41E2"
             color="white"
-            @click="$store.commit('setAgreeWithInitialEmotion', true)"
+            @click="$store.commit('setAgreeWithInitialEmotion', true), (agreeWithEmo = true)"
           />
           <Button
             text="No, I disagree"
             background="white"
             color="#6E41E2"
-            @click="$store.commit('setAgreeWithInitialEmotion', false)"
+            @click="$store.commit('setAgreeWithInitialEmotion', false), (agreeWithEmo = false)"
           />
         </div>
         <br /><br />
-        <div id="usrinput">
+        <div id="usrinput" v-if="!agreeWithEmo">
           <input
             class="input-box"
             placeholder="Your current emotion"
@@ -217,6 +217,8 @@ export default {
     return {
       showConsentForm: false,
       consentGiven: false,
+      agreeWithEmo: true,
+      isLoading: true,
     };
   },
   methods: {
@@ -242,6 +244,9 @@ export default {
         alert("Please fill out the form completely");
       }
     },
+    changeColor(){
+                    this.isLoading = !this.isLoading;
+                }
   },
   beforeMount(){
     if(!this.$store.state.initialEmotion){
@@ -276,6 +281,13 @@ export default {
   font-size: 56px;
   line-height: 114%;
 }
+
+.is-red{
+            background: red;
+        }
+        .is-blue{
+            background: blue;
+        }
 
 #emotions {
   color: #6e41e2;

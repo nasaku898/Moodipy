@@ -22,7 +22,7 @@ export default {
     padding: 10px 20px;
     align-items: center;
     border: 2px solid #6E41E2;
-    
+
     box-shadow: 3px 3px rgba(0, 0, 0, 0.1);
 
     box-sizing: border-box;
@@ -38,5 +38,9 @@ export default {
     margin-right: 20px;
     text-align: center;
 
+}
+
+button:active {
+    transform: translateY(2px);
 }
 </style>
