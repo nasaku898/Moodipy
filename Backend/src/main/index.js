@@ -17,7 +17,7 @@ dotenv.config();
 
 app.use('/spotify', spotifyAPI);
 
-app.listen(PORT, () => console.log(`Server started on ${PORT}`));
+app.listen(process.env.PORT | PORT, () => console.log(`Server started on ${PORT}`));
 
 //initialize database
 initialize_db();
