@@ -11,12 +11,10 @@
 </template>
 
 <script>
-
 import MusicPage from "./components/MusicPage/MusicPage";
 // import OnboardingPage from "./components/OnboardingPage/OnboardingPage";
 import NavBar from "./components/NavBar/NavBar";
 // import AboutPage from "./components/AboutPage/AboutPage";
-
 
 export default {
   name: "App",
@@ -25,7 +23,6 @@ export default {
     // AboutPage,
     NavBar,
     MusicPage
-
   },
   data() {
     return {
@@ -41,26 +38,15 @@ export default {
 </script>
 
 <style>
-@media only screen and (min-width: 768px) {
   #app {
-    /*font-family: Avenir, Helvetica, Arial, sans-serif;*/
-    /*
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;*/
     width: 100%;
-    height: 100vh;
-    background-image: url(./assets/Frame-without-square.png);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    background: rgb(255, 255, 255);
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(231, 223, 255, 1) 100%
+    );
   }
-}
-@media only screen and (max-width: 768px) {
-  #app {
-    background: #ffffff;
-  }
-}
 #app {
   font-family: Montserrat;
   font-style: normal;
