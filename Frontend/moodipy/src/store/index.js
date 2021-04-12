@@ -15,7 +15,8 @@ export default createStore({
         emotionQueried: [],
         finalEmotion: "",
         username: "",
-        helpful: false
+        helpful: false,
+        agreeWithInitialEmotion: false
     },
     mutations: {
         updateInitialEmotion(state, enteredEmotion) {
@@ -35,6 +36,10 @@ export default createStore({
         },
         setHelpful(state, helpful) {
             state.helpful = helpful
+        },
+        setAgreeWithInitialEmotion(state, agree) {
+            console.log(agree)
+            state.agreeWithInitialEmotion = agree
         }
     },
     actions: {

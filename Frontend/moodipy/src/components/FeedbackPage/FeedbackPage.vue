@@ -7,7 +7,7 @@
         <ul>
           <li
             v-for="emotion in Object.keys($store.state.emotionQueried)"
-            :key="emotion.id"
+            :key="emotion"
           >
             <div class="lang">
               {{ emotion
@@ -147,8 +147,18 @@
       <div>
         <p id="heading6">Do you still agree with the emotion you inputed?</p>
         <div id="buttons">
-          <Button text="Yes, I agree" background="#6E41E2" color="white" />
-          <Button text="No, I disagree" background="white" color="#6E41E2" />
+          <Button
+            text="Yes, I agree"
+            background="#6E41E2"
+            color="white"
+            @click="$store.commit('setAgreeWithInitialEmotion', true)"
+          />
+          <Button
+            text="No, I disagree"
+            background="white"
+            color="#6E41E2"
+            @click="$store.commit('setAgreeWithInitialEmotion', false)"
+          />
         </div>
         <br /><br />
         <div id="usrinput">
@@ -186,6 +196,7 @@
           text="Submit and bring me back to the home page"
           background="#6E41E2"
           color="white"
+          @click="handleSubmitFeedback"
         />
       </div>
     </div>
@@ -194,7 +205,7 @@
 
 <script>
 import Button from "../Button/Button.vue";
-
+import { createFeedback } from "../../firebase";
 export default {
   name: "FeedbackPage",
   components: {
@@ -207,7 +218,19 @@ export default {
       consentGiven: false,
     };
   },
-
+  methods: {
+    async handleSubmitFeedback() {
+      const feedback = {
+        name: this.$store.state.username,
+        initialEmotion: this.$store.state.initialEmotion,
+        emotionDetected: this.$store.state.emotionDetected,
+        emotionQueried: this.$store.state.emotionQueried,
+        helpful: this.$store.state.helpful,
+        agreeWithInitialEmotion: this.$store.state.agreeWithInitialEmotion,
+      };
+      await createFeedback(feedback);
+    },
+  },
 };
 </script>
 

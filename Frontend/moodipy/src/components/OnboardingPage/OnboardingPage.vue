@@ -13,16 +13,23 @@
       *Please enter a word or a group of word
     </div>
     <div class="modal" v-if="!spotifyLoggedIn">
-      <p>This application requires a Spotify account.</p>
-      <p>Please click the button to be redirected to Spotify login page</p>
+      <p class="disclaimer-text" style="font-weight: 1000">
+        This app is for research purposes and it requires a Spotify account.
+      </p>
+      <p class="disclaimer-text">
+        Moodipy puts the confidentiality of the user at a high priority. That is
+        why your Spotify account's information and your picture will not be
+        saved in our application and will not be trackable.
+      </p>
+      <p class="disclaimer-text">
+        Please click the button to be redirected to Spotify login page
+      </p>
       <button class="btn" @click="redirectToSpotifyLogin()">Login</button>
     </div>
     <br />&nbsp;<br />
     <button class="btn" v-on:click="changeEmotion(inputEmotion)">
       Get Started
     </button>
-    <!-- print initial emotion of app.vue for for debug puposes -->
-    <p>{{ $store.state.initialEmotion }}</p>
   </div>
 </template>
 
@@ -90,6 +97,12 @@ export default {
   align-items: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+.disclaimer-text {
+  font-family: Roboto;
+  font-size: 16px;
+  text-align: center;
 }
 #frame117 {
   display: flex;
