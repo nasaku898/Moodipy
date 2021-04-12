@@ -67,7 +67,7 @@ router.get('/callback', (req, res) => {
                 `Sucessfully retreived access token. Expires in ${expires_in} s.`
             );
 
-            res.redirect('http://localhost:8080/')
+            res.redirect('https://moodipy.herokuapp.com/')
 
             setInterval(async () => {
                 const data = await spotifyApi.refreshAccessToken();
