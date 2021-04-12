@@ -37,7 +37,7 @@ img {
 #playlist-wrapper {
   display: grid;
   grid-template-columns: 1fr;
-  width:200px;
+  width:180px;
   height: 200px;
 }
 
