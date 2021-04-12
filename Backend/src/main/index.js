@@ -5,7 +5,6 @@ const dotenv = require('dotenv');
 const spotifyAPI = require('./routes/SpotifyAPI');
 const app = express();
 const PORT = 8888;
-const initialize_db = require('./helpers/db_init');
 
 app.use(cors())
 
@@ -18,6 +17,3 @@ dotenv.config();
 app.use('/spotify', spotifyAPI);
 
 app.listen(process.env.PORT | PORT, () => console.log(`Server started on ${PORT}`));
-
-//initialize database
-initialize_db();
