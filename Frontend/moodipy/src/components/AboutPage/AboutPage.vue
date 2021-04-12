@@ -27,7 +27,7 @@ export default {
 };
 </script>
 
-<style scope>
+<style scoped>
 #frame117 {
   display: flex;
   flex-direction: column;
@@ -59,7 +59,7 @@ export default {
     font-size: 50px;
   }
   #description {
-    width: 90%;
+    width: 40%;
     text-align: justify;
     text-justify: inter-word;
     margin: auto;

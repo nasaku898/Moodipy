@@ -5,14 +5,12 @@
     v-on:changeEmotion="updateInitialEmotion($event)"
     :initialEmotion="initialEmotion"
   ></OnboardingPage> -->
-  <MusicPage></MusicPage>
+  <router-view></router-view>
   <!-- <AboutPage></AboutPage> -->
 </div>
 </template>
 
 <script>
-
-import MusicPage from "./components/MusicPage/MusicPage";
 // import OnboardingPage from "./components/OnboardingPage/OnboardingPage";
 import NavBar from "./components/NavBar/NavBar";
 // import AboutPage from "./components/AboutPage/AboutPage";
@@ -24,23 +22,23 @@ export default {
     // OnboardingPage,
     // AboutPage,
     NavBar,
-    MusicPage
-
   },
   data() {
     return {
-      initialEmotion: "Initial emotion from App",
+
     };
   },
   methods: {
-    updateInitialEmotion(enteredEmotion) {
-      this.initialEmotion = enteredEmotion;
-    },
   },
 };
 </script>
 
 <style>
+.link{
+  text-decoration: none;
+  color: inherit;
+}
+
 @media only screen and (min-width: 768px) {
   #app {
     /*font-family: Avenir, Helvetica, Arial, sans-serif;*/
@@ -54,6 +52,8 @@ export default {
     background-image: url(./assets/Frame-without-square.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    position: fixed;
+    overflow-y: scroll;
   }
 }
 @media only screen and (max-width: 768px) {
