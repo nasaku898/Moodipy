@@ -1,8 +1,7 @@
 <template>
-  <div id="playlist-wrapper">
+  <div id="playlist-wrapper" @click="appendIframe(playlist.external_urls.spotify)">
     <div id="playlist-canvas">
       <img
-        @click="appendIframe(playlist.external_urls.spotify)"
         v-bind:src="playlist.images[0].url"
       />
       <p id="playlist-name">{{ playlist.name }}</p>
