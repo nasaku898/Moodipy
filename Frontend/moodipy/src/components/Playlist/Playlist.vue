@@ -37,6 +37,8 @@ img {
 #playlist-wrapper {
   display: grid;
   grid-template-columns: 1fr;
+  width:200px;
+  height: 200px;
 }
 
 #playlist-name {
@@ -46,6 +48,8 @@ img {
   font-size: 16px;
   line-height: 28px;
   color: #000000;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 #playlist-canvas {
   background: rgba(0, 0, 0, 0.05);

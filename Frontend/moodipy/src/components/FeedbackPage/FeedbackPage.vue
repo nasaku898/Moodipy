@@ -151,13 +151,19 @@
             text="Yes, I agree"
             background="#6E41E2"
             color="white"
-            @click="$store.commit('setAgreeWithInitialEmotion', true), (agreeWithEmo = true)"
+            @click="
+              $store.commit('setAgreeWithInitialEmotion', true),
+                (agreeWithEmo = true)
+            "
           />
           <Button
             text="No, I disagree"
             background="white"
             color="#6E41E2"
-            @click="$store.commit('setAgreeWithInitialEmotion', false), (agreeWithEmo = false)"
+            @click="
+              $store.commit('setAgreeWithInitialEmotion', false),
+                (agreeWithEmo = false)
+            "
           />
         </div>
         <br /><br />
@@ -206,7 +212,7 @@
 <script>
 import Button from "../Button/Button.vue";
 import { createFeedback } from "../../firebase";
-import router from '../../router'
+import router from "../../router";
 export default {
   name: "FeedbackPage",
   components: {
@@ -226,8 +232,9 @@ export default {
       if (
         this.$store.state.username &&
         this.$store.state.initialEmotion &&
-        this.$store.state.emotionQueried && 
-        (this.$store.state.agreeWithInitialEmotion || this.$store.state.finalEmotion) &&
+        this.$store.state.emotionQueried &&
+        (this.$store.state.agreeWithInitialEmotion ||
+          this.$store.state.finalEmotion) &&
         this.$store.state.username
       ) {
         const feedback = {
@@ -237,23 +244,31 @@ export default {
           emotionQueried: this.$store.state.emotionQueried,
           helpful: this.$store.state.helpful,
           agreeWithInitialEmotion: this.$store.state.agreeWithInitialEmotion,
-          finalEmotion:this.$store.state.finalEmotion
+          finalEmotion: this.$store.state.finalEmotion,
         };
         await createFeedback(feedback);
-        router.push('/')
+        this.$store.commit("updateInitialEmotion", "");
+        this.$store.commit("setEmotionDetected", "");
+        this.$store.commit("setEmotionQueried", []);
+        this.$store.commit("setFinalEmotion", "");
+        this.$store.commit("setUsername", "");
+        this.$store.commit("setHelpful", "");
+        this.$store.commit("setAgreeWithInitialEmotion", "");
+
+        router.push("/");
       } else {
         alert("Please fill out the form completely");
       }
     },
-    changeColor(){
-                    this.isLoading = !this.isLoading;
-                }
+    changeColor() {
+      this.isLoading = !this.isLoading;
+    },
   },
-  beforeMount(){
-    if(!this.$store.state.initialEmotion){
-      router.push('/')
+  beforeMount() {
+    if (!this.$store.state.initialEmotion) {
+      router.push("/");
     }
-  }
+  },
 };
 </script>
 
@@ -283,12 +298,12 @@ export default {
   line-height: 114%;
 }
 
-.is-red{
-            background: red;
-        }
-        .is-blue{
-            background: blue;
-        }
+.is-red {
+  background: red;
+}
+.is-blue {
+  background: blue;
+}
 
 #emotions {
   color: #6e41e2;
