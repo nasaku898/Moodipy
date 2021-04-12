@@ -221,11 +221,6 @@ export default {
   },
   methods: {
     async handleSubmitFeedback() {
-      console.log(this.$store.state.username);
-      console.log(this.$store.state.initialEmotion);
-      console.log(this.$store.stateemotionQueried);
-      console.log(this.$store.state.finalEmotion);
-      console.log(this.$store.state.username);
       if (
         this.$store.state.username &&
         this.$store.state.initialEmotion &&
