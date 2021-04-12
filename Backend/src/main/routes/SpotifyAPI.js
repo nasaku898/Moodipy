@@ -115,7 +115,7 @@ router.post('/playlist/emotion', (req, res) => {
 
         // Finding the search words for the emotion
         const searchKey = searchKeysByEmotion[emotionOfMax];
-        console.log(emotionOfMax)
+        
         //Searching for a playlist
         spotifyApi.search(searchKey, ['playlist'], { limit: 10, offset: 0 }).then(response => {
             if (response.body.playlists.items.length === 0) {
