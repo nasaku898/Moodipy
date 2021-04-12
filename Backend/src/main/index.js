@@ -4,7 +4,7 @@ const cors = require("cors");
 const dotenv = require('dotenv');
 const spotifyAPI = require('./routes/SpotifyAPI');
 const app = express();
-const PORT = 8888;
+// const PORT = 8888;
 
 app.use(cors())
 
@@ -16,4 +16,4 @@ dotenv.config();
 
 app.use('/spotify', spotifyAPI);
 
-app.listen(process.env.PORT | PORT, () => console.log(`Server started on ${PORT}`));
+app.listen(process.env.PORT || 8888, () => console.log(`Server started on ${process.env.PORT}`));

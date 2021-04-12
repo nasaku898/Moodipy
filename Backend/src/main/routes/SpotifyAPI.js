@@ -142,4 +142,8 @@ router.get('/status', (req, res) => {
     }
 })
 
+router.get('/hello',(req,res)=>{
+    res.send("hello world")
+})
+
 module.exports = router;
