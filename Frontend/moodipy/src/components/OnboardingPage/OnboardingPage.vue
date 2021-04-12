@@ -12,42 +12,98 @@
     <div id="errorMsg" v-if="validEntry == false">
       *Please enter a word or a group of word
     </div>
+    <div class="modal" v-if="!spotifyLoggedIn">
+      <p class="disclaimer-text" style="font-weight: 1000">
+        This app is for research purposes and it requires a Spotify account.
+      </p>
+      <p class="disclaimer-text">
+        Moodipy puts the confidentiality of the user at a high priority. That is
+        why your Spotify account's information and your picture will not be
+        saved in our application and will not be trackable.
+      </p>
+      <p class="disclaimer-text">
+        Please click the button to be redirected to Spotify login page
+      </p>
+      <button class="btn" @click="redirectToSpotifyLogin()">Login</button>
+    </div>
     <br />&nbsp;<br />
-    <button id="getStarted" v-on:click="changeEmotion(inputEmotion)">
+    <button class="btn" v-on:click="changeEmotion(inputEmotion)">
       Get Started
     </button>
-    <!-- print initial emotion of app.vue for for debug puposes -->
-    <p>{{ initialEmotion }}</p>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import router from "../../router";
 
 export default {
-  name: "StartPage",
+  name: "OnboardingPage",
   props: ["initialEmotion"],
   data() {
     return {
       validEntry: true,
+      spotifyLoggedIn: true,
     };
   },
   methods: {
     changeEmotion(inputEmotion) {
-      if (this.hasNumber(inputEmotion) || this.inputEmotion === undefined || this.inputEmotion === '') {
+      if (
+        this.hasNumber(inputEmotion) ||
+        this.inputEmotion === undefined ||
+        this.inputEmotion === ""
+      ) {
         this.validEntry = false;
       } else {
-        this.$emit("changeEmotion", inputEmotion);
+        this.$store.commit("updateInitialEmotion", inputEmotion);
         this.validEntry = true;
+        localStorage.setItem("initialEmotion", inputEmotion);
+        router.push("/music");
       }
     },
     hasNumber(string) {
       return /\d/.test(string);
     },
+    redirectToSpotifyLogin() {
+      window.location = "http://localhost:8888/spotify/login";
+    },
+  },
+  beforeMount() {
+    axios.get("http://localhost:8888/spotify/status").catch((err) => {
+      if (err.response.status === 404) {
+        this.spotifyLoggedIn = false;
+      }
+    });
   },
 };
 </script>
 
-<style scope>
+<style scoped>
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+  min-height: 80%;
+  width: 100%;
+  max-width: 600px;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
+    0px 4px 16px rgba(51, 51, 51, 0.08);
+  border-radius: 8px;
+  border: solid 1px #6e41e2;
+  padding: 25px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.disclaimer-text {
+  font-family: Roboto;
+  font-size: 16px;
+  text-align: center;
+}
 #frame117 {
   display: flex;
   flex-direction: column;
@@ -107,7 +163,7 @@ export default {
   outline: none !important;
 }
 
-#getStarted {
+.btn {
   background: #6e41e2;
   border-radius: 4px;
   width: 120px;

@@ -1,8 +1,12 @@
 <template>
   <div id="menubar">
-    <img id="logo" src="../../assets/moodipyLogo.png" alt="Moodipy Logo" />
-    <p id="name">MOODIPY</p>
-    <button id="about">About</button>
+    <router-link to="/" class="link">
+      <img id="logo" src="../../assets/moodipyLogo.png" alt="Moodipy Logo" />
+      <p id="name">MOODIPY</p>
+    </router-link>
+    <router-link to="/about" class="link">
+      <button id="about">About</button>
+    </router-link>
   </div>
 </template>
 
@@ -12,7 +16,7 @@ export default {
 };
 </script>
 
-<style scope>
+<style scoped>
 #menubar {
   background-color: transparent;
   height: 40px;

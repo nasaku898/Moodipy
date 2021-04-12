@@ -33,12 +33,18 @@
           Delete file
         </button>
       </form>
-        <div id="feedbackClick" v-if="Object.keys(playlists).length > 0">
-            <Button text="View details and give feedback" background="#6E41E2" color="white" />
-        </div>
+      <div id="feedbackClick" v-if="Object.keys(playlists).length > 0">
+        <router-link to="/feedback">
+          <Button
+            text="View details and give feedback"
+            background="#6E41E2"
+            color="white"
+          />
+        </router-link>
+      </div>
     </div>
     <div id="playlist-result">
-      <p id="playlist">Playlists</p>
+      <p id="playlist">Playlists {{ $store.state.emotionDetected }}</p>
       <playlist-carousel
         id="playlist-carousel"
         v-if="Object.keys(playlists).length > 0"
@@ -109,10 +115,22 @@ export default {
               },
             }
           );
+
+          this.$store.commit(
+            "setEmotionQueried",
+            emotions.data[0].faceAttributes.emotion
+          );
+
           const spotifyResponse = await axios.post(
             "http://localhost:8888/spotify/playlist/emotion",
             emotions.data[0].faceAttributes.emotion
           );
+
+          this.$store.commit(
+            "setEmotionDetected",
+            spotifyResponse.data.emotionDetected
+          );
+
           this.errorMsg = "";
           this.playlists = spotifyResponse.data.body.playlists.items;
         } catch (error) {
@@ -143,14 +161,16 @@ export default {
   .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding-top: 20%;
+    padding-top: 15%;
   }
 }
 
-.container {
-  padding-top: 15%;
-  display: grid;
-  grid-template-columns: 1fr;
+@media only screen and (min-width: 601px) and (max-width: 959px) {
+  .container {
+    padding-top: 15%;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -161,11 +181,11 @@ export default {
   }
 }
 
-  .feedback {
-    grid-column-start: 1;
-    grid-column-end: span 2;
-    grid-row-start: 2;
-    grid-row-end: span 3;
+.feedback {
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  grid-row-start: 2;
+  grid-row-end: span 3;
 }
 
 .btn {

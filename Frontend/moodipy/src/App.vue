@@ -1,45 +1,41 @@
 <template>
 <div>
   <NavBar></NavBar>
-  <!-- <OnboardingPage
-    v-on:changeEmotion="updateInitialEmotion($event)"
-    :initialEmotion="initialEmotion"
-  ></OnboardingPage> -->
-  <MusicPage></MusicPage>
-  <!-- <AboutPage></AboutPage> -->
+  <router-view></router-view>
+
 </div>
 </template>
 
 <script>
-import MusicPage from "./components/MusicPage/MusicPage";
-// import OnboardingPage from "./components/OnboardingPage/OnboardingPage";
 import NavBar from "./components/NavBar/NavBar";
-// import AboutPage from "./components/AboutPage/AboutPage";
 
 export default {
   name: "App",
   components: {
-    // OnboardingPage,
-    // AboutPage,
     NavBar,
-    MusicPage
   },
   data() {
     return {
-      initialEmotion: "Initial emotion from App",
+
     };
   },
   methods: {
-    updateInitialEmotion(enteredEmotion) {
-      this.initialEmotion = enteredEmotion;
-    },
   },
 };
 </script>
 
 <style>
+.link{
+  text-decoration: none;
+  color: inherit;
+}
+
+@media only screen and (min-width: 768px) {
   #app {
     width: 100%;
+    height: 100vh;
+    position: fixed;
+    overflow-y: scroll;
     background: rgb(255, 255, 255);
     background: radial-gradient(
       circle,
@@ -47,6 +43,7 @@ export default {
       rgba(231, 223, 255, 1) 100%
     );
   }
+}
 #app {
   font-family: Montserrat;
   font-style: normal;
