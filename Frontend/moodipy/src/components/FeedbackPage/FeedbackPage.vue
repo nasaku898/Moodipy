@@ -206,6 +206,7 @@
 <script>
 import Button from "../Button/Button.vue";
 import { createFeedback } from "../../firebase";
+import router from '../../router'
 export default {
   name: "FeedbackPage",
   components: {
@@ -220,17 +221,33 @@ export default {
   },
   methods: {
     async handleSubmitFeedback() {
-      const feedback = {
-        name: this.$store.state.username,
-        initialEmotion: this.$store.state.initialEmotion,
-        emotionDetected: this.$store.state.emotionDetected,
-        emotionQueried: this.$store.state.emotionQueried,
-        helpful: this.$store.state.helpful,
-        agreeWithInitialEmotion: this.$store.state.agreeWithInitialEmotion,
-      };
-      await createFeedback(feedback);
+      if (
+        this.$store.state.username &&
+        this.$store.state.initialEmotion &&
+        this.$store.state.emotionQueried && 
+        this.$store.state.finalEmotion &&
+        this.$store.state.username
+      ) {
+        const feedback = {
+          name: this.$store.state.username,
+          initialEmotion: this.$store.state.initialEmotion,
+          emotionDetected: this.$store.state.emotionDetected,
+          emotionQueried: this.$store.state.emotionQueried,
+          helpful: this.$store.state.helpful,
+          agreeWithInitialEmotion: this.$store.state.agreeWithInitialEmotion,
+          finalEmotion:this.$store.state.finalEmotion
+        };
+        await createFeedback(feedback);
+      } else {
+        alert("Please fill out the form completely");
+      }
     },
   },
+  beforeMount(){
+    if(!this.$store.state.initialEmotion){
+      router.push('/')
+    }
+  }
 };
 </script>
 

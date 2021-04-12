@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
     state: {
-        initialEmotion: "Initial emotion from App",
+        initialEmotion: "",
         emotionDetected: "",
         emotionQueried: [],
         finalEmotion: "",
