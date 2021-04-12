@@ -1,1 +1,1 @@
-export const BACKEND_URL= "https://moodipy-backend.herokuapp.com/"
+export const BACKEND_URL= "https://moodipy-backend.herokuapp.com"
