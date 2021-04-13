@@ -12,7 +12,7 @@
             <div class="lang">
               {{ emotion
               }}<span class="percent"
-                >({{ $store.state.emotionQueried[emotion] * 100 }}%)</span
+                >({{ ($store.state.emotionQueried[emotion] * 100).toFixed(2) }}%)</span
               >
             </div>
             <div class="bar">
