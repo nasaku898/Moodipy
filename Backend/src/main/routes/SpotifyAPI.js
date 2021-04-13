@@ -138,7 +138,7 @@ router.get('/status', (req, res) => {
     if (!token) {
         res.status(404).send()
     } else {
-        res.status(302).send()
+        res.status(200).send()
     }
 })
 
