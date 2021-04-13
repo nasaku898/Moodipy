@@ -141,9 +141,16 @@ export default {
               "The image is not clear or your face is not properly shown";
           }
         } catch (error) {
-          console.log(error);
+          console.log(error.response.data);
           if (error.message) {
-            this.errorMsg = error.message;
+            if (
+              error.response.data ===
+              "Uncertain about the emotion. Please upload another picture."
+            ) {
+              this.errorMsg = error.response.data;
+            } else {
+              this.errorMsg = error.message;
+            }
           } else {
             this.errorMsg = "Unexpected Error";
           }
