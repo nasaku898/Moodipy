@@ -118,24 +118,30 @@ export default {
             }
           );
 
-          this.$store.commit(
-            "setEmotionQueried",
-            emotions.data[0].faceAttributes.emotion
-          );
+          if (emotions.data[0] !== undefined) {
+            this.$store.commit(
+              "setEmotionQueried",
+              emotions.data[0].faceAttributes.emotion
+            );
 
-          const spotifyResponse = await axios.post(
-            `${URL}/spotify/playlist/emotion`,
-            emotions.data[0].faceAttributes.emotion
-          );
+            const spotifyResponse = await axios.post(
+              `${URL}/spotify/playlist/emotion`,
+              emotions.data[0].faceAttributes.emotion
+            );
 
-          this.$store.commit(
-            "setEmotionDetected",
-            spotifyResponse.data.emotionDetected
-          );
+            this.$store.commit(
+              "setEmotionDetected",
+              spotifyResponse.data.emotionDetected
+            );
 
-          this.errorMsg = "";
-          this.playlists = spotifyResponse.data.body.playlists.items;
+            this.errorMsg = "";
+            this.playlists = spotifyResponse.data.body.playlists.items;
+          } else {
+            this.errorMsg =
+              "The image is not clear or your face is not properly shown";
+          }
         } catch (error) {
+          console.log(error);
           if (error.message) {
             this.errorMsg = error.message;
           } else {
