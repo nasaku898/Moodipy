@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       validEntry: true,
-      spotifyLoggedIn: true,
+      spotifyLoggedIn: false,
     };
   },
   methods: {
@@ -71,11 +71,18 @@ export default {
     },
   },
   beforeMount() {
-    axios.get(`${URL}/spotify/status`).catch((err) => {
-      if (err.response.status === 404) {
-        this.spotifyLoggedIn = false;
-      }
-    });
+    axios
+      .get(`${URL}/spotify/status`)
+      .then((response) => {
+        if (response.status === 200) {
+          this.spotifyLoggedIn = true;
+        }
+      })
+      .catch((err) => {
+        if (err.response.status === 404) {
+          this.spotifyLoggedIn = false;
+        }
+      });
   },
 };
 </script>
