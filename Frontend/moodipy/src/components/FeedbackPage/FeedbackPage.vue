@@ -194,7 +194,6 @@
         </div>
       </div>
     </div>
-
     <div id="center-self" v-if="consentGiven">
       <p id="heading6">That's it! Thank you for using Moodipy!</p>
       <div id="buttons">
@@ -206,17 +205,20 @@
         />
       </div>
     </div>
+    <Dialog :show="showDialog" :confirm="confirm" title="Sorry, it seems like there is something missing." description="Please fill out the form completely." />
   </div>
 </template>
 
 <script>
 import Button from "../Button/Button.vue";
+import Dialog from "../Dialog/Dialog.vue";
 import { createFeedback } from "../../firebase";
 import router from "../../router";
 export default {
   name: "FeedbackPage",
   components: {
     Button,
+    Dialog
   },
 
   data() {
@@ -225,6 +227,7 @@ export default {
       consentGiven: false,
       agreeWithEmo: true,
       isLoading: true,
+      showDialog: false,
     };
   },
   methods: {
@@ -257,12 +260,15 @@ export default {
 
         router.push("/");
       } else {
-        alert("Please fill out the form completely");
+        this.showDialog = true;
       }
     },
     changeColor() {
       this.isLoading = !this.isLoading;
     },
+    confirm() {
+      this.showDialog = false;
+    }
   },
   beforeMount() {
     if (!this.$store.state.initialEmotion) {
