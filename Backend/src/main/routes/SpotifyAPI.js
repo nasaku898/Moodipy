@@ -43,7 +43,7 @@ router.get('/callback', (req, res) => {
     const error = req.query.error;
     const code = req.query.code;
     const state = req.query.state;
-
+    console.log("hi")
     if (error) {
         console.error('Callback Error:', error);
         res.send(`Callback Error: ${error}`);
