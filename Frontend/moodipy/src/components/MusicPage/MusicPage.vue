@@ -3,7 +3,7 @@
     <div id="frame117">
       <h1 id="slogan">Music adapted to your mood</h1>
       <p id="instruction">
-        1. Upload an image of your face
+        1. Upload an image of your face (We will not keep a copy of your images)
         <br />
         2. We'll provide you with a playlist based on your mood
       </p>

@@ -10,10 +10,11 @@
             :key="emotion"
           >
             <div class="lang">
-              {{ emotion
-              }}<span class="percent"
-                >({{ ($store.state.emotionQueried[emotion] * 100).toFixed(2) }}%)</span
-              >
+              {{ emotion }}
+              <span class="percent">({{
+                  ($store.state.emotionQueried[emotion] * 100).toFixed(2)
+                }}%)
+              </span>
             </div>
             <div class="bar">
               <div
@@ -31,7 +32,9 @@
 
     <div id="center-self">
       <p id="heading6">You said your current mood was:</p>
-      <p id="parag2">{{ $store.state.initialEmotion }}</p>
+      <p id="parag2" style="font-size: 24px">
+        {{ $store.state.initialEmotion }}
+      </p>
     </div>
 
     <div id="center-self" v-if="!consentGiven">
@@ -147,24 +150,27 @@
       <div>
         <p id="heading6">Do you still agree with the emotion you inputed?</p>
         <div id="buttons">
-          <Button
-            text="Yes, I agree"
-            background="#6E41E2"
-            color="white"
-            @click="
-              $store.commit('setAgreeWithInitialEmotion', true),
-                (agreeWithEmo = true)
-            "
-          />
-          <Button
-            text="No, I disagree"
-            background="white"
-            color="#6E41E2"
-            @click="
-              $store.commit('setAgreeWithInitialEmotion', false),
-                (agreeWithEmo = false)
-            "
-          />
+          <p id="parag2" style="margin-top: 0px; margin-bottom: 0px">
+            <input
+              type="radio"
+              name="agree"
+              id="radiobtn"
+              @click="
+                $store.commit('setAgreeWithInitialEmotion', true),
+                  (agreeWithEmo = true)
+              "
+            />Yes, I agree
+            
+            <input
+              type="radio"
+              name="agree"
+              id="radiobtn"
+              @click="
+                $store.commit('setAgreeWithInitialEmotion', false),
+                  (agreeWithEmo = false)
+              "
+            />No, I disagree
+          </p>
         </div>
         <br /><br />
         <div id="usrinput" v-if="!agreeWithEmo">
@@ -179,18 +185,21 @@
       <div>
         <p id="heading6">Did music help you validate your emotion?</p>
         <div id="buttons">
-          <Button
-            text="Yes"
-            background="#6E41E2"
-            color="white"
-            @click="$store.commit('setHelpful', true)"
-          />
-          <Button
-            text="No"
-            background="white"
-            color="#6E41E2"
-            @click="$store.commit('setHelpful', false)"
-          />
+          <p id="parag2" style="margin-top: 0px; margin-bottom: 0px">
+            <input
+              type="radio"
+              name="valid"
+              id="radiobtn"
+              @click="$store.commit('setHelpful', true)"
+            />Yes
+
+            <input
+              type="radio"
+              name="valid"
+              id="radiobtn"
+              @click="$store.commit('setHelpful', false)"
+            />No
+          </p>
         </div>
       </div>
     </div>
@@ -205,7 +214,12 @@
         />
       </div>
     </div>
-    <Dialog :show="showDialog" :confirm="confirm" title="Sorry, it seems like there is something missing." description="Please fill out the form completely." />
+    <Dialog
+      :show="showDialog"
+      :confirm="confirm"
+      title="Sorry, it seems like there is something missing."
+      description="Please fill out the form completely."
+    />
   </div>
 </template>
 
@@ -218,7 +232,7 @@ export default {
   name: "FeedbackPage",
   components: {
     Button,
-    Dialog
+    Dialog,
   },
 
   data() {
@@ -268,7 +282,7 @@ export default {
     },
     confirm() {
       this.showDialog = false;
-    }
+    },
   },
   beforeMount() {
     if (!this.$store.state.initialEmotion) {
@@ -304,17 +318,10 @@ export default {
   line-height: 114%;
 }
 
-.is-red {
-  background: red;
-}
-.is-blue {
-  background: blue;
-}
-
 #emotions {
   color: #6e41e2;
   margin: auto;
-  width: 50%;
+  width: 100%;
   height: 100%;
 }
 .input-box {
@@ -342,6 +349,7 @@ export default {
   color: black;
   padding-left: 10px;
 }
+
 #emoDetected {
   text-align: center;
   font-family: Montserrat;
@@ -394,6 +402,13 @@ export default {
   text-align: center;
 }
 
+#radiobtn {
+  width: 15px;
+  height: 15px;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
 #usrinput {
   display: flex;
   justify-content: center;
@@ -404,6 +419,8 @@ export default {
   background: white;
   box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
+  margin-right: 10%;
+  margin-left: 10%;
 }
 
 ul li {
