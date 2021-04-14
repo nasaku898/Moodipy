@@ -3,9 +3,9 @@
     <div id="frame117">
       <h1 id="slogan">Music adapted to your mood</h1>
       <p id="instruction">
-        1. Upload an image of your face (We will not keep a copy of your images)
+        1. Take a selfie and upload it! (We will never keep a copy of your image)
         <br />
-        2. We'll provide you with a playlist based on your mood
+        2. We'll provide you with a playlist based on the mood detected on your image.
       </p>
       <form @submit="retrievePlaylists">
         <input
