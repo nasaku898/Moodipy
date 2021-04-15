@@ -7,6 +7,7 @@
         <br />
         2. We'll provide you with a playlist based on the mood detected on your image.
       </p>
+      <br /><br />
       <form @submit="retrievePlaylists">
         <input
           type="file"
@@ -19,7 +20,6 @@
           <div id="file">
             <div id="file-wrapper">
               <p id="select-file">Select a file</p>
-
               <p v-if="fileName" id="select-file-description">{{ fileName }}</p>
               <p v-else id="select-file-description">
                 PNG, jpg, gif files up to 10 MB in size are available for
