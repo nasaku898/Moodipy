@@ -12,7 +12,7 @@ Judy Mezaber | [jmezaber](https://github.com/jmezaber) | 40102104
 Manraj Rai | [Manraj45](https://github.com/Manraj45) | 40084677
 
 ## Technologies
-We used JavaScript Vue.js 3 framework for the frontend. In addition, we also used Microsoft Emotion API to handle the emotion recognition aspect of the app. Further, we utilized Spotify Web API to help match the emotion detected to an existing playlist picked by Spotify.
+We used Vue.js framework for the frontend. In addition, we also used Microsoft Emotion API to handle the emotion recognition aspect of the app. Further, we utilized Spotify Web API to help match the emotion detected to an existing playlist picked by Spotify.
 
 ## Where to find the project
 
